@@ -1,0 +1,7 @@
+{
+  "name": "OpenBook",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
