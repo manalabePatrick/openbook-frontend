@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" shape="round"> Login </ion-button>
+  <ion-button
+    expand="block"
+    shape="round"
+    [routerLink]="['/register']"
+    routerLinkActive="router-link-active"
+  >
+    Register
+  </ion-button>
+</ion-content>
