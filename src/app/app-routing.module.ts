@@ -22,7 +22,11 @@ const routes: Routes = [
   {
     path: 'my-books',
     loadChildren: () => import('./pages/my-books/my-books.module').then( m => m.MyBooksPageModule)
+  },  {
+    path: 'post-book',
+    loadChildren: () => import('./modals/post-book/post-book.module').then( m => m.PostBookPageModule)
   }
+
 ];
 
 @NgModule({
