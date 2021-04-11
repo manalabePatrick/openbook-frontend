@@ -35,6 +35,9 @@ export class LoginPage implements OnInit {
     }  
 
     this.apiService.makeRequest(requestObject).then((val) =>{
+      if(val.message == "Incorrect Password."){
+        return this.presentAlert("Incorrect Password.")
+      }
       console.log("Logged in val=", val);
     });
     
