@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -10,7 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private alertController: AlertController, private apiService: ApiService, private router:Router) { }
+  constructor(private alertController: AlertController, private apiService: ApiService) { }
 
   ngOnInit() {
   }
@@ -36,8 +35,7 @@ export class LoginPage implements OnInit {
     }  
 
     this.apiService.makeRequest(requestObject).then((val) =>{
-      this.router.navigate(['/library']);
-      console.log("succesfuly logged in");
+      console.log("Logged in val=", val);
     });
     
   }

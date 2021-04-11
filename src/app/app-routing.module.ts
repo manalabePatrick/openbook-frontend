@@ -22,10 +22,6 @@ const routes: Routes = [
   {
     path: 'my-books',
     loadChildren: () => import('./pages/my-books/my-books.module').then( m => m.MyBooksPageModule)
-  },
-  {
-    path: 'library',
-    loadChildren: () => import('./pages/library/library.module').then( m => m.LibraryPageModule)
   }
 ];
 

@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Library', url: '/library', icon: 'book' },
+    { title: 'Library', url: '/folder/Inbox', icon: 'book' },
     { title: 'Book Shelf', url: '/folder/Outbox', icon: 'layers' },
-    { title: 'My Books', url: '/my-books', icon: 'archive' },
+    { title: 'My Books', url: '/folder/Favorites', icon: 'archive' },
     { title: 'Letters', url: '/folder/Archived', icon: 'document' },
     { title: 'Diary', url: '/folder/Trash', icon: 'reader' },
     { title: 'Leave', url: '/folder/Spam', icon: 'log-out' },
