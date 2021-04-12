@@ -34,7 +34,7 @@ export class PostBookPage implements OnInit {
     this.apiService.makeRequest(requestObject).then((val) => {
       if(val.statusCode == 201) {
           val.newPost.ago = "Now";
-          console.log("201")
+          console.log(val)
       } else {
           console.log("Something went wrong, your post could not be created.");
       }
