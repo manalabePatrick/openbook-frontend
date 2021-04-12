@@ -11,7 +11,7 @@ export class PostBookPage implements OnInit {
 
   public book = {
     content: '',
-    theme: 'Body beybe'
+    theme: ''
   }
 
   constructor(private modalController:ModalController, private alertController: AlertController, private apiService: ApiService){ }
@@ -20,28 +20,27 @@ export class PostBookPage implements OnInit {
   }
 
   public addBook(){
+    if(!this.book.content || !this.book.theme){
+      const err = this.presentAlert('All fields are required');
+      return err
+    }
 
-    // if(!this.book.title || !this.book.body) {
-    //   return this.presentAlert("All fields are required");
-    // }
-  
-  
-  let requestObject = {
+    let requestObject = {
       location: "users/create-post",
       method: "POST",
       body: this.book
-  }
-  
-  this.apiService.makeRequest(requestObject).then((val) => {
+    }
+
+    this.apiService.makeRequest(requestObject).then((val) => {
       if(val.statusCode == 201) {
           val.newPost.ago = "Now";
-          //this.posts.col1.unshift(val.newPost);
+          console.log("201")
       } else {
-         // this.events.onAlertEvent.emit("Something went wrong, your post could not be created.");
+          console.log("Something went wrong, your post could not be created.");
       }
-      //this.newPostContent = "";
+      this.book.content = "";
   });
-    //this.modalController.dismiss();
+
   }
 
   async presentAlert(msg) {
@@ -52,6 +51,10 @@ export class PostBookPage implements OnInit {
     });
 
     await alert.present();
+  }
+s
+  public closeModal(){
+    this.modalController.dismiss();
   }
 
 }

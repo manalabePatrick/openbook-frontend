@@ -1,13 +1,24 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Post Book</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="closeModal()" fill="solid" color="primary">
+        Close
+        <ion-icon slot="end" name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <ion-item>
-    <ion-label position="floating">Title</ion-label>
-    <ion-input [(ngModel)]="book.title"></ion-input>
+    <ion-label position="floating">Content</ion-label>
+    <ion-input [(ngModel)]="book.content"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Theme</ion-label>
+    <ion-input [(ngModel)]="book.theme"></ion-input>
   </ion-item>
 
   <ion-button (click)="addBook()" expand="block" shape="round">
