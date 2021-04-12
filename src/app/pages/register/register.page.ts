@@ -1,5 +1,5 @@
-import { templateJitUrl } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -10,14 +10,12 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private apiService: ApiService, private alertController: AlertController) { }
+  constructor(private apiService: ApiService, private alertController: AlertController, private router: Router) { }
 
   ngOnInit() {
   }
 
   public credentials = {
-    first_name: '',
-    last_name: '',
     email: '',
     password: '',
     password_confirm: ''
@@ -25,9 +23,7 @@ export class RegisterPage implements OnInit {
 
   private register(){
 
-    if(!this.credentials.first_name ||
-      !this.credentials.last_name ||
-      !this.credentials.email ||
+    if(!this.credentials.email ||
       !this.credentials.password ||
       !this.credentials.password_confirm  ){
 
@@ -52,7 +48,7 @@ export class RegisterPage implements OnInit {
       if(val.message == 'The provided email is already registered.'){
         return this.presentAlert('The provided email is already registered.');
       }
-      console.log("This is from register.page.ts = ",val);
+      this.router.navigate(['/folder/Inbox']);
     });
   }
 

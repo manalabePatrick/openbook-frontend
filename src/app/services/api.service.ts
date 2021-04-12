@@ -19,14 +19,6 @@ export class ApiService {
     const url = `${this.baseURL}/${location}`;
     let httpOptions = {}; 
 
-    if(this.storage.getToken()) {
-      httpOptions = {
-          headers: new HttpHeaders({
-              'Authorization': `Bearer ${this.storage.getToken()}`
-          })
-      }
-  }
-
     if(method ==="post"){
       return this.http.post(url, body, httpOptions).toPromise();
     }

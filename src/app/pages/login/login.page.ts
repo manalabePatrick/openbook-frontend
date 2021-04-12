@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private alertController: AlertController, private apiService: ApiService, private router: Router) { }
+  constructor(private alertController: AlertController, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -29,21 +29,9 @@ export class LoginPage implements OnInit {
 
     }
 
-    const requestObject = {
-      method: "POST",
-      location: "users/login",
-      body: this.credentials
-    }  
-
-    this.apiService.makeRequest(requestObject).then((val) =>{
-      if(val.message == "Incorrect Password."){
-        return this.presentAlert("Incorrect Password.")
-      }
-
-      this.router.navigate(['/folder/Inbox']);
-      //console.log("Logged in val=", val);
-    });
-    
+    this.authService.loginUser(this.credentials).then((val) =>{
+      console.log(val);
+    });    
   }
 
   async presentAlert(msg) {
