@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-register',
@@ -10,12 +11,14 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private apiService: ApiService, private alertController: AlertController, private router: Router) { }
+  constructor(private apiService: ApiService, private alertController: AlertController, private router: Router, private storage: LocalStorageService) { }
 
   ngOnInit() {
   }
 
   public credentials = {
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
     password_confirm: ''
@@ -23,9 +26,11 @@ export class RegisterPage implements OnInit {
 
   private register(){
 
-    if(!this.credentials.email ||
+    if( !this.credentials.first_name ||
+      !this.credentials.last_name ||
+      !this.credentials.email ||
       !this.credentials.password ||
-      !this.credentials.password_confirm  ){
+      !this.credentials.password_confirm){
 
       const err = this.presentAlert('All fields are required');
 
@@ -43,13 +48,25 @@ export class RegisterPage implements OnInit {
       location: "users/register",
       body: this.credentials
     }  
-  
+
     this.apiService.makeRequest(requestObject).then((val) => {
-      if(val.message == 'The provided email is already registered.'){
-        return this.presentAlert('The provided email is already registered.');
+      if(val.token) {
+          this.storage.setToken(val.token);
+          this.router.navigate(['/folder/Inbox']);
+          return;
       }
-      this.router.navigate(['/folder/Inbox']);
-    });
+      if(val.message) { 
+        this.presentAlert('The provided email is already registered.');
+      }
+  });
+  
+    // this.apiService.makeRequest(requestObject).then((val) => {
+    //   if(val.message == 'The provided email is already registered.'){
+    //     return this.presentAlert('The provided email is already registered.');
+    //   }
+    //   console.log(val);
+    //   //this.router.navigate(['/folder/Inbox']);
+    // });
   }
 
   async presentAlert(msg) {

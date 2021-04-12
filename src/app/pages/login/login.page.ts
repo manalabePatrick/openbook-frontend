@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { AuthService } from 'src/app/services/auth.service';
+import { ApiService } from 'src/app/services/api.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private alertController: AlertController, private authService: AuthService, private router: Router) { }
+  constructor(private alertController: AlertController, private apiService: ApiService, private router: Router, private storage: LocalStorageService) { }
 
   ngOnInit() {
   }
@@ -29,9 +30,21 @@ export class LoginPage implements OnInit {
 
     }
 
-    this.authService.loginUser(this.credentials).then((val) =>{
-      console.log(val);
-    });    
+    let requestObject = {
+      method: "POST",
+      location: "users/login",
+      body: this.credentials
+    }
+
+  this.apiService.makeRequest(requestObject).then((val) => {
+    if(val.token) {
+        this.storage.setToken(val.token);
+        this.router.navigate(['/folder/Inbox']);
+        return;
+    }
+    if(val.message) { this.presentAlert(val.message); }
+});
+
   }
 
   async presentAlert(msg) {
