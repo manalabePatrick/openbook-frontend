@@ -52,6 +52,7 @@ export class RegisterPage implements OnInit {
     this.apiService.makeRequest(requestObject).then((val) => {
       if(val.token) {
           this.storage.setToken(val.token);
+          this.storage.setUserId(val.user._id);
           this.router.navigate(['/folder/Inbox']);
           return;
       }

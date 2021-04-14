@@ -34,8 +34,7 @@ export class PostBookPage implements OnInit {
     this.apiService.makeRequest(requestObject).then((val) => {
       if(val.statusCode == 201) {
           val.newPost.ago = "Now";
-          console.log(val)
-          this.modalController.dismiss();
+          this.modalController.dismiss(val.newPost);
       } else {
           console.log("Something went wrong, your post could not be created.");
       }
@@ -52,7 +51,7 @@ export class PostBookPage implements OnInit {
 
     await alert.present();
   }
-s
+
   public closeModal(){
     this.modalController.dismiss();
   }

@@ -8,6 +8,7 @@ import { LocalStorageService } from './local-storage.service';
 export class ApiService {
 
   baseURL = 'http://localhost:3000';
+  userId: String = '';
 
   constructor(private http: HttpClient, private storage: LocalStorageService) { }
 
@@ -27,6 +28,9 @@ export class ApiService {
       }
   }
 
+    if(method === "get") {
+      return this.http.get(url, httpOptions).toPromise();
+  }
     if(method ==="post"){
       return this.http.post(url, body, httpOptions).toPromise();
     }

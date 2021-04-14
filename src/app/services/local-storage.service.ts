@@ -7,6 +7,7 @@ export class LocalStorageService {
 
   constructor() { }
 
+  userId:any;
   tokenName = "--token-ASM-PROD";
   postThemeName = "--post-theme-ASM-PROD";
   
@@ -17,6 +18,10 @@ export class LocalStorageService {
           alert('Browser does not support the localStorage API');
       }
   }
+
+  public setUserId(id) {
+    return this.userId = id;
+}
   
   private get(key) {
       if(localStorage) {
