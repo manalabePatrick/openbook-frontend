@@ -41,6 +41,10 @@ const routes: Routes = [
   },  {
     path: 'post-chapter',
     loadChildren: () => import('./modals/post-chapter/post-chapter.module').then( m => m.PostChapterPageModule)
+  },
+  {
+    path: 'library',
+    loadChildren: () => import('./pages/library/library.module').then( m => m.LibraryPageModule)
   }
 
 
