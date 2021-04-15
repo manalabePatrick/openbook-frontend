@@ -1,53 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { PostBookPage } from 'src/app/modals/post-book/post-book.page';
+import { PostChapterPage } from 'src/app/modals/post-chapter/post-chapter.page';
 import { ApiService } from 'src/app/services/api.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
-
 @Component({
-  selector: 'app-my-books',
-  templateUrl: './my-books.page.html',
-  styleUrls: ['./my-books.page.scss'],
+  selector: 'app-book-chapters',
+  templateUrl: './book-chapters.page.html',
+  styleUrls: ['./book-chapters.page.scss'],
 })
-export class MyBooksPage implements OnInit {
+export class BookChaptersPage implements OnInit {
 
   userId: any;
-  books = [{
-    _id: '1',
-    title: 'Default',
-    summary: 'Default'
-  }]
-  constructor(private modalController: ModalController, private storage: LocalStorageService, private apiService: ApiService, private router: Router) { 
+  bookId = '';
+  chapters = []
+  constructor(private modalController: ModalController, private apiService: ApiService, private storage: LocalStorageService) {
     this.userId = this.storage.userId;
-  }
+    this.bookId = this.storage.bookId; 
+   }
 
   ngOnInit() {
-    // console.log(this.userId);
-    this.showUserBooks();
+    this.showChapters();
   }
 
-  public showUserBooks(){
+  public showChapters(){
     let requestObject = {
       location: `users/get-user-data/${this.userId}`,
       method: "GET"
   }
 
   this.apiService.makeRequest(requestObject).then((data) => {
-    this.books = data.user.books
+    this.chapters = data.user.chapters
   });
   }
 
-
-  public viewBook(id){
-    this.storage.bookId = id;
-    this.router.navigate(['/view-book']);
+  public createChapter(){
+    this.presentModal();
   }
 
   async presentModal() {
     const modal = await this.modalController.create({
-      component: PostBookPage,
+      component: PostChapterPage,
       cssClass: 'my-custom-class'
     });
     
@@ -55,7 +48,7 @@ export class MyBooksPage implements OnInit {
 
     const { data } = await modal.onWillDismiss();
     if(this.storage.didPost){
-      this.books.push(data);
+      this.chapters.push(data);
       this.storage.didPost = false;
     }
     

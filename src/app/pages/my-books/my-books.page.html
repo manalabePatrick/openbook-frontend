@@ -14,7 +14,7 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-card *ngFor="let book of books">
+  <ion-card *ngFor="let book of books" (click)="viewBook(book._id)">
     <img
       src="https://images.pexels.com/photos/1482476/pexels-photo-1482476.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     />
@@ -23,5 +23,8 @@
       <ion-card-title>{{book.title}}</ion-card-title>
     </ion-card-header>
     <ion-card-content> {{book.summary}} </ion-card-content>
+    <ion-button shape="round" color="warning"> Stars</ion-button>
+    <ion-button shape="round" color="success"> Views</ion-button>
+    <ion-button shape="round"> Notes</ion-button>
   </ion-card>
 </ion-content>

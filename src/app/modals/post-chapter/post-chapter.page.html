@@ -3,22 +3,22 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="" (click)="closeModal()"></ion-back-button>
     </ion-buttons>
-    <ion-title>Post Book</ion-title>
+    <ion-title>Post Chapter</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <ion-item>
     <ion-label position="floating">Title</ion-label>
-    <ion-input [(ngModel)]="book.title"></ion-input>
+    <ion-input [(ngModel)]="chapter.title"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Summary</ion-label>
-    <ion-input [(ngModel)]="book.summary"></ion-input>
+    <ion-label position="floating">Content</ion-label>
+    <ion-input [(ngModel)]="chapter.content"></ion-input>
   </ion-item>
 
-  <ion-button (click)="addBook()" expand="block" shape="round">
+  <ion-button (click)="addChapter()" expand="block" shape="round">
     Add
   </ion-button>
 </ion-content>

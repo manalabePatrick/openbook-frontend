@@ -26,7 +26,24 @@ const routes: Routes = [
   {
     path: 'post-book',
     loadChildren: () => import('./modals/post-book/post-book.module').then( m => m.PostBookPageModule)
+  },
+  {
+    path: 'view-book',
+    loadChildren: () => import('./pages/view-book/view-book.module').then( m => m.ViewBookPageModule)
+  },
+  {
+    path: 'book-notes',
+    loadChildren: () => import('./tabs/book-notes/book-notes.module').then( m => m.BookNotesPageModule)
+  },
+  {
+    path: 'book-chapters',
+    loadChildren: () => import('./tabs/book-chapters/book-chapters.module').then( m => m.BookChaptersPageModule)
+  },  {
+    path: 'post-chapter',
+    loadChildren: () => import('./modals/post-chapter/post-chapter.module').then( m => m.PostChapterPageModule)
   }
+
+
 
 ];
 

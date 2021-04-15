@@ -10,6 +10,8 @@ export class LocalStorageService {
   userId:any;
   tokenName = "--token-ASM-PROD";
   postThemeName = "--post-theme-ASM-PROD";
+  didPost = false;
+  bookId = "";
   
   private set(key, value) {
       if(localStorage) {

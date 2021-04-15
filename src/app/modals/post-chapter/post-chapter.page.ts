@@ -4,43 +4,46 @@ import { ApiService } from 'src/app/services/api.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
-  selector: 'app-post-book',
-  templateUrl: './post-book.page.html',
-  styleUrls: ['./post-book.page.scss'],
+  selector: 'app-post-chapter',
+  templateUrl: './post-chapter.page.html',
+  styleUrls: ['./post-chapter.page.scss'],
 })
-export class PostBookPage implements OnInit {
+export class PostChapterPage implements OnInit {
 
-  public book = {
+  public chapter = {
     title: '',
-    summary: ''
+    content: '',
+    bookId: ''
   }
-  constructor(private modalController:ModalController, private alertController: AlertController, private apiService: ApiService, private storage: LocalStorageService){ }
+
+  constructor(private storage: LocalStorageService, private alertController: AlertController, private modalController: ModalController, private apiService: ApiService) {
+    this.chapter.bookId = this.storage.bookId;
+   }
 
   ngOnInit() {
   }
 
-  public addBook(){
-    if(!this.book.title || !this.book.summary){
+  public addChapter(){
+    if(!this.chapter.title || !this.chapter.content){
       const err = this.presentAlert('All fields are required');
       return err
     }
 
     let requestObject = {
-      location: "users/create-book",
+      location: "users/create-chapter",
       method: "POST",
-      body: this.book
+      body: this.chapter
     }
 
     this.apiService.makeRequest(requestObject).then((val) => {
       if(val.statusCode == 201) {
-          val.newPost.ago = "Now";
           this.storage.didPost = true;
           this.modalController.dismiss(val.newPost);
+         // console.log(val.newPost.bookId[0]);
       } else {
-          console.log("Something went wrong, your post could not be created.");
+          console.log("Something went wrong, your chapter could not be created.");
       }
   });
-
   }
 
   async presentAlert(msg) {

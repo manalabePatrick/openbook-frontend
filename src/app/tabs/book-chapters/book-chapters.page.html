@@ -1,0 +1,31 @@
+<ion-header> </ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-thumbnail slot="start">
+      <img
+        src="https://images.pexels.com/photos/1482476/pexels-photo-1482476.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      />
+    </ion-thumbnail>
+    <ion-label>Item Thumbnail</ion-label>
+  </ion-item>
+
+  <div *ngFor="let chapter of chapters;  let i = index ">
+    <ion-card *ngIf="chapter.bookId == bookId">
+      <ion-card-content>
+        # {{chapter.title}}
+        <ion-badge color="success" mode="ios">Views</ion-badge>
+        <ion-badge color="warning" mode="ios">Stars</ion-badge>
+      </ion-card-content></ion-card
+    >
+  </div>
+
+  <ion-button
+    (click)="createChapter()"
+    expand="block"
+    color="primary"
+    shape="round"
+  >
+    Add Chapter
+  </ion-button>
+</ion-content>
