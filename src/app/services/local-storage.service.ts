@@ -7,6 +7,8 @@ export class LocalStorageService {
 
   constructor() { }
 
+  libraryChapters = [];
+  fromLibrary = false;
   userId:any;
   tokenName = "--token-ASM-PROD";
   postThemeName = "--post-theme-ASM-PROD";

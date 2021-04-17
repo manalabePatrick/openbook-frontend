@@ -17,6 +17,7 @@ export class BookChaptersPage implements OnInit {
   constructor(private modalController: ModalController, private apiService: ApiService, private storage: LocalStorageService) {
     this.userId = this.storage.userId;
     this.bookId = this.storage.bookId; 
+    this.chapters = this.storage.libraryChapters;
    }
 
   ngOnInit() {
@@ -24,6 +25,11 @@ export class BookChaptersPage implements OnInit {
   }
 
   public showChapters(){
+
+    if(this.storage.fromLibrary){
+     // console.log(this.storage.libraryChapters);
+      return this.storage.fromLibrary = false;
+    }
     let requestObject = {
       location: `users/get-user-data/${this.userId}`,
       method: "GET"

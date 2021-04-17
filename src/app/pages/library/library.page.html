@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <ion-card *ngFor="let book of organizedBook">
+  <ion-card *ngFor="let book of organizedBook" (click)="viewBook(book._id)">
     <img
       src="https://images.pexels.com/photos/1482476/pexels-photo-1482476.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     />
