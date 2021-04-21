@@ -10,6 +10,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class BookNotesPage implements OnInit {
 
+  canPost: any;
   bookId: any;
   userId: any;
   posts = [];
@@ -21,6 +22,8 @@ export class BookNotesPage implements OnInit {
     this.post.bookId = this.storage.bookId;
     this.userId = this.storage.userId;
     this.bookId = this.storage.bookId;
+    this.posts = this.storage.libraryPost;
+    this.canPost = this.storage.canPost;
   }
 
   ngOnInit() {
@@ -28,6 +31,10 @@ export class BookNotesPage implements OnInit {
   }
 
   public showPosts(){
+    if(!this.storage.fromLibrary){
+      // console.log(this.storage.libraryChapters);
+       return this.storage.fromLibrary = false;
+     }
     let requestObject = {
       location: `users/get-user-data/${this.userId}`,
       method: "GET"

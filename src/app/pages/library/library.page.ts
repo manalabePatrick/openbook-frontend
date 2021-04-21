@@ -14,7 +14,11 @@ export class LibraryPage implements OnInit {
   organizedBook = [];
   chapters = [];
   organizedChapters = [];
-  constructor(private apiService: ApiService, private storage: LocalStorageService, private router: Router) { }
+  post = [];
+  organizedPosts = [];
+  constructor(private apiService: ApiService, private storage: LocalStorageService, private router: Router) { 
+    this.storage.canPost = false;
+  }
 
   ngOnInit() {
     this.showBooks();
@@ -29,6 +33,14 @@ export class LibraryPage implements OnInit {
     //console.log(this.organizedBook);
   }
 
+  public organizePost(){
+    this.post.forEach((val) =>{
+      val.posts.forEach(post =>{
+        this.organizedPosts.push(post);
+      })
+    });
+  }
+
   public organizeChapters(){
     this.chapters.forEach((val) =>{
       val.chapters.forEach(book =>{
@@ -36,6 +48,10 @@ export class LibraryPage implements OnInit {
       })
     });
     //console.log(this.organizedChapters);
+  }
+
+  public open(){
+    console.log(this.organizedPosts);
   }
 
   public showBooks(){
@@ -47,8 +63,10 @@ export class LibraryPage implements OnInit {
   this.apiService.makeRequest(requestObject).then((data) => {
     this.books = data;
     this.chapters = data;
+    this.post = data;
     this.organizeBooks();
     this.organizeChapters();
+    this.organizePost();
     //console.log(this.books);
   });
   }
@@ -57,6 +75,7 @@ export class LibraryPage implements OnInit {
     this.storage.bookId = id;
     this.storage.fromLibrary = true;
     this.storage.libraryChapters = this.organizedChapters;
+    this.storage.libraryPost = this.organizedPosts;
     this.router.navigate(['/view-book']);
   }
 

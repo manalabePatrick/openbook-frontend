@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
 
   constructor() { }
-
+  canPost = false;
+  libraryPost = [];
   libraryChapters = [];
   fromLibrary = false;
   userId:any;

@@ -21,6 +21,7 @@ export class MyBooksPage implements OnInit {
   }]
   constructor(private modalController: ModalController, private storage: LocalStorageService, private apiService: ApiService, private router: Router) { 
     this.userId = this.storage.userId;
+    this.storage.canPost = true;
   }
 
   ngOnInit() {

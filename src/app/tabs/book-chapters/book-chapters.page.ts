@@ -11,13 +11,20 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class BookChaptersPage implements OnInit {
 
+  added:boolean = false;
+  canPost: any;
   userId: any;
   bookId = '';
   chapters = []
+
+  public favorite = {
+    bookId:this.storage.bookId
+  }
   constructor(private modalController: ModalController, private apiService: ApiService, private storage: LocalStorageService) {
     this.userId = this.storage.userId;
     this.bookId = this.storage.bookId; 
     this.chapters = this.storage.libraryChapters;
+    this.canPost = storage.canPost;
    }
 
   ngOnInit() {
@@ -60,4 +67,24 @@ export class BookChaptersPage implements OnInit {
     
   }
 
+  public addToFavorite(){
+    console.log(this.storage.bookId)
+   if(this.added){
+      let requestObject = {
+        location: "users/favorite",
+        method: "POST",
+        body: this.favorite
+      }
+
+      this.apiService.makeRequest(requestObject).then((val) => {
+        if(val.statusCode == 201) {
+            console.log('added')
+        } else {
+            console.log("Something went wrong, your chapter could not be created.");
+        }
+    });
+   }else{
+     console.log("removed");
+   }
+  }
 }

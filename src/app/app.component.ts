@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public appPages = [
     { title: 'Library', url: '/library', icon: 'book' },
-    { title: 'Book Shelf', url: '/folder/Outbox', icon: 'layers' },
     { title: 'My Books', url: '/my-books', icon: 'archive' },
     { title: 'Letters', url: '/folder/Archived', icon: 'document' },
     { title: 'Diary', url: '/folder/Trash', icon: 'reader' },
