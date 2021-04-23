@@ -7,17 +7,42 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <ion-card *ngFor="let book of organizedBook" (click)="viewBook(book._id)">
-    <img
-      src="https://images.pexels.com/photos/1482476/pexels-photo-1482476.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-    />
-    <ion-card-header>
-      <ion-card-subtitle>Title</ion-card-subtitle>
-      <ion-card-title>{{ book.title }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>{{ book.content }}</ion-card-content>
-    <ion-button shape="round" color="warning"> Stars</ion-button>
-    <ion-button shape="round" color="success"> Views</ion-button>
-    <ion-button shape="round"> Notes</ion-button>
+  <ion-card *ngFor="let book of organizedBook">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <img
+            id="book-cover"
+            src="https://images.unsplash.com/photo-1579572331145-5e53b299c64e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+          />
+        </ion-col>
+        <ion-col size="7">
+          <ion-item class="ion-text-center">
+            <ion-label>{{book.title}}</ion-label>
+          </ion-item>
+
+          <ion-card-content>
+            <ion-button
+              expand="block"
+              shape="round"
+              (click)="showSummary(book.title, book.summary, book.by)"
+            >
+              Summary
+            </ion-button>
+            <ion-button
+              expand="block"
+              shape="round"
+              (click)="viewBook(book._id)"
+            >
+              Read
+            </ion-button>
+            <ion-badge color="primary" color="none">
+              <ion-icon name="star-half-outline" color="warning"></ion-icon>
+              69</ion-badge
+            >
+          </ion-card-content>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 </ion-content>

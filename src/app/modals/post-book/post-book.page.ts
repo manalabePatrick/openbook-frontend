@@ -12,9 +12,12 @@ export class PostBookPage implements OnInit {
 
   public book = {
     title: '',
-    summary: ''
+    summary: '',
+    by: ''
   }
-  constructor(private modalController:ModalController, private alertController: AlertController, private apiService: ApiService, private storage: LocalStorageService){ }
+  constructor(private modalController:ModalController, private alertController: AlertController, private apiService: ApiService, private storage: LocalStorageService){ 
+    this.book.by = this.storage.userName;
+  }
 
   ngOnInit() {
   }

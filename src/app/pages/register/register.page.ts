@@ -53,6 +53,7 @@ export class RegisterPage implements OnInit {
       if(val.token) {
           this.storage.setToken(val.token);
           this.storage.setUserId(val.user._id);
+          this.storage.userName = val.user.name;
           this.router.navigate(['/library']);
           return;
       }
