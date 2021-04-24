@@ -11,19 +11,6 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class LibraryPage implements OnInit {
 
-  // <ion-card *ngFor="let book of organizedBook" (click)="viewBook(book._id)">
-  //   <img
-  //     src="https://images.pexels.com/photos/1482476/pexels-photo-1482476.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-  //   />
-  //   <ion-card-header>
-  //     <ion-card-subtitle>Title</ion-card-subtitle>
-  //     <ion-card-title>{{ book.title }}</ion-card-title>
-  //   </ion-card-header>
-  //   <ion-card-content>{{ book.content }}</ion-card-content>
-  //   <ion-button shape="round" color="warning"> Stars</ion-button>
-  //   <ion-button shape="round" color="success"> Views</ion-button>
-  //   <ion-button shape="round"> Notes</ion-button>
-  // </ion-card>
 
   books = [];
   organizedBook = [];
@@ -100,7 +87,7 @@ export class LibraryPage implements OnInit {
 
   async presentAlert(title, summary, by) {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
+      cssClass: 'ion-text-justify',
       header: title,
       subHeader: 'by: ' + by,
       message: summary,

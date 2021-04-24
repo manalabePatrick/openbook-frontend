@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-toolbar color="primary">
+<ion-header class="ion-no-border">
+  <ion-toolbar color="none">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -7,6 +7,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
+  <ion-searchbar></ion-searchbar>
   <ion-card *ngFor="let book of organizedBook">
     <ion-grid>
       <ion-row>
@@ -23,6 +24,7 @@
 
           <ion-card-content>
             <ion-button
+              color="success"
               expand="block"
               shape="round"
               (click)="showSummary(book.title, book.summary, book.by)"
@@ -33,6 +35,7 @@
               expand="block"
               shape="round"
               (click)="viewBook(book._id)"
+              color="secondary"
             >
               Read
             </ion-button>

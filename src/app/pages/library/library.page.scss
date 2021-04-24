@@ -3,8 +3,33 @@
   width: 10em;
   border-radius: 12px;
   margin-top: 1em;
+
+  box-shadow: 0 0 0 0 rgb(0, 47, 255);
+  transform: scale(1);
+  animation: pulse 2s infinite;
 }
 
 ion-card {
   box-shadow: none !important;
+}
+
+.my-custom-class .alert-wrapper {
+  background: #4e2525;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(10, 19, 153, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
 }
