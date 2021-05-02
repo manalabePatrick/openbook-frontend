@@ -6,6 +6,9 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
 
   constructor() { }
+
+  by = '';
+  bookTitle = '';
   userName = '';
   canPost = false;
   libraryPost = [];
@@ -16,7 +19,11 @@ export class LocalStorageService {
   postThemeName = "--post-theme-ASM-PROD";
   didPost = false;
   bookId = "";
-  
+  pages=[];
+  pageNum;
+  author: any;
+  data:any;
+
   private set(key, value) {
       if(localStorage) {
           localStorage.setItem(key, value);

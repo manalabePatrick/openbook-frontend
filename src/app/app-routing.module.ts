@@ -45,6 +45,18 @@ const routes: Routes = [
   {
     path: 'library',
     loadChildren: () => import('./pages/library/library.module').then( m => m.LibraryPageModule)
+  },
+  {
+    path: 'read',
+    loadChildren: () => import('./pages/read/read.module').then( m => m.ReadPageModule)
+  },
+  {
+    path: 'send-message',
+    loadChildren: () => import('./modals/send-message/send-message.module').then( m => m.SendMessagePageModule)
+  },
+  {
+    path: 'letters',
+    loadChildren: () => import('./pages/letters/letters.module').then( m => m.LettersPageModule)
   }
 
 

@@ -41,8 +41,10 @@ export class MyBooksPage implements OnInit {
   }
 
 
-  public viewBook(id){
+  public viewBook(id, title, by){
     this.storage.bookId = id;
+    this.storage.bookTitle = title;
+    this.storage.by = by;
     this.router.navigate(['/view-book']);
   }
 

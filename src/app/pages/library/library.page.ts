@@ -73,15 +73,19 @@ export class LibraryPage implements OnInit {
     this.organizeBooks();
     this.organizeChapters();
     this.organizePost();
+    this.storage.data = data;
     //console.log(this.books);
   });
   }
 
-  public viewBook(id){
+  public viewBook(id, title, by, owner_id ){
     this.storage.bookId = id;
     this.storage.fromLibrary = true;
     this.storage.libraryChapters = this.organizedChapters;
     this.storage.libraryPost = this.organizedPosts;
+    this.storage.bookTitle = title;
+    this.storage.by = by;
+    this.storage.author = owner_id;
     this.router.navigate(['/view-book']);
   }
 

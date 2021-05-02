@@ -10,6 +10,8 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class BookNotesPage implements OnInit {
 
+  by = '';
+  title = '';
   canPost: any;
   bookId: any;
   userId: any;
@@ -24,6 +26,8 @@ export class BookNotesPage implements OnInit {
     this.bookId = this.storage.bookId;
     this.posts = this.storage.libraryPost;
     this.canPost = this.storage.canPost;
+    this.title = this.storage.bookTitle;
+    this.by = this.storage.by;
   }
 
   ngOnInit() {

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="closeModal()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Send Letter</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-label>To: {{to}}</ion-label>
+  <ion-item>
+    <ion-label position="floating">Message Here</ion-label>
+    <ion-input [(ngModel)]="book.content"></ion-input>
+  </ion-item>
+
+  <ion-button (click)="sendLetter()" expand="block" shape="round">
+    Send Letter
+  </ion-button>
+</ion-content>

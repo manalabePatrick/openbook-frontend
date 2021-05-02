@@ -1,36 +1,51 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
-  selector: 'app-post-book',
-  templateUrl: './post-book.page.html',
-  styleUrls: ['./post-book.page.scss'],
+  selector: 'app-send-message',
+  templateUrl: './send-message.page.html',
+  styleUrls: ['./send-message.page.scss'],
 })
-export class PostBookPage implements OnInit {
+export class SendMessagePage implements OnInit {
 
+  to = '';
+  data = []
   public book = {
-    title: '',
-    summary: '',
-    by: ''
+    my_id: 'sample',
+    content: '',
+    other_id: 'sample',
+    from: 'wew',
+    to: 'wew',
   }
-  constructor(private router: Router, private modalController:ModalController, private alertController: AlertController, private apiService: ApiService, private storage: LocalStorageService){ 
-    this.book.by = this.storage.userName;
+  constructor(private modalController: ModalController, private storage: LocalStorageService, private alertController: AlertController, private apiService: ApiService) { 
+    this.data = this.storage.data;
+    this.book.my_id = this.storage.userId;
+    this.book.other_id = this.storage.author;
+    this.book.from = this.storage.userName;
   }
 
   ngOnInit() {
+    this.setInfo();
   }
 
-  public addBook(){
-    if(!this.book.title || !this.book.summary){
+  public setInfo(){
+    this.data.forEach(element => {
+      if(element._id == this.storage.author){
+        this.to = element.name;
+        this.book.to = this.to;
+      }
+    });
+  }
+  public sendLetter(){
+    if(!this.book.content){
       const err = this.presentAlert('All fields are required');
       return err
     }
 
     let requestObject = {
-      location: "users/create-book",
+      location: "users/create-message",
       method: "POST",
       body: this.book
     }
@@ -44,7 +59,10 @@ export class PostBookPage implements OnInit {
           console.log("Something went wrong, your post could not be created.");
       }
   });
+  }
 
+  public closeModal(){
+    this.modalController.dismiss();
   }
 
   async presentAlert(msg) {
@@ -55,10 +73,6 @@ export class PostBookPage implements OnInit {
     });
 
     await alert.present();
-  }
-
-  public closeModal(){
-    this.modalController.dismiss();
   }
 
 }
