@@ -1,16 +1,28 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu
+      contentId="main-content"
+      type="overlay"
+      (ionWillOpen)="chaneInfo()"
+    >
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>OpenBook</ion-list-header>
-          <ion-note>Share your thoughts</ion-note>
-
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="../assets/avatar/{{ avatar }}.png" />
+            </ion-avatar>
+            <ion-label>
+              <h3>{{ name }}</h3>
+              <p>{{ email }}</p>
+            </ion-label>
+          </ion-item>
+          <br /><br />
           <ion-menu-toggle
             auto-hide="false"
             *ngFor="let p of appPages; let i = index"
           >
             <ion-item
+              color="none"
               routerDirection="root"
               [routerLink]="[p.url]"
               lines="none"
@@ -26,8 +38,6 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-
-        <img src="../assets/logo.png" alt="" />
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

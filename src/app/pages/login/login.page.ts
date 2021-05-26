@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
     password: '',
   }
 
-  private login(){
+  public login(){
 
     if(!this.credentials.email || !this.credentials.password ){
 
@@ -41,6 +41,7 @@ export class LoginPage implements OnInit {
         this.storage.setToken(val.token);
         this.storage.setUserId(val.user._id);
         this.storage.userName = val.user.name;
+        this.storage.user = val.user;
         this.router.navigate(['/library']);
         return;
     }

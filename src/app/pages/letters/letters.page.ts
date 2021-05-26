@@ -15,6 +15,10 @@ export class LettersPage implements OnInit {
     this.data = this.storage.data;
   }
 
+  ionViewWillEnter(){
+    this.setMessages();
+  }
+
   ngOnInit() {
     this.setMessages();
   }

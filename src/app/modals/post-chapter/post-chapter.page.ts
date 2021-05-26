@@ -13,7 +13,8 @@ export class PostChapterPage implements OnInit {
   public chapter = {
     title: '',
     content: '',
-    bookId: ''
+    bookId: '',
+    genre: ''
   }
 
   constructor(private storage: LocalStorageService, private alertController: AlertController, private modalController: ModalController, private apiService: ApiService) {

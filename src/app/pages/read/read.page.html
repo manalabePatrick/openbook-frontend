@@ -1,15 +1,19 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{title}}</ion-title>
+    <h6>{{title}}</h6>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <p>{{body}}</p>
 
-  <ion-button shape="round" (click)="prevPage()"> Prev </ion-button>
-  <ion-button shape="round" (click)="nextPage()"> Next </ion-button>
+  <ion-button shape="round" (click)="prevPage()" color="dark">
+    <ion-icon name="arrow-back-circle-outline"></ion-icon>Prev
+  </ion-button>
+  <ion-button shape="round" (click)="nextPage()" color="dark">
+    Next<ion-icon name="arrow-forward-circle-outline"></ion-icon>
+  </ion-button>
 </ion-content>

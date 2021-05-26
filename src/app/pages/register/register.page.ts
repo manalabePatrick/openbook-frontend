@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
+import { AvatarsPage } from 'src/app/modals/avatars/avatars.page';
 import { ApiService } from 'src/app/services/api.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
@@ -11,7 +12,8 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private apiService: ApiService, private alertController: AlertController, private router: Router, private storage: LocalStorageService) { }
+  avatar:string = "2";
+  constructor(private apiService: ApiService, private alertController: AlertController, private router: Router, private storage: LocalStorageService, private modalController: ModalController) { }
 
   ngOnInit() {
   }
@@ -21,10 +23,15 @@ export class RegisterPage implements OnInit {
     last_name: '',
     email: '',
     password: '',
-    password_confirm: ''
+    password_confirm: '',
+    avatar: ''
   }
 
-  private register(){
+  changeAvatar(){
+    this.presentModal();
+  }
+
+  public register(){
 
     if( !this.credentials.first_name ||
       !this.credentials.last_name ||
@@ -43,6 +50,7 @@ export class RegisterPage implements OnInit {
       return err
     }
 
+    this.credentials.avatar = this.avatar;
     const requestObject = {
       method: "POST",
       location: "users/register",
@@ -54,6 +62,7 @@ export class RegisterPage implements OnInit {
           this.storage.setToken(val.token);
           this.storage.setUserId(val.user._id);
           this.storage.userName = val.user.name;
+          this.storage.user = val.user;
           this.router.navigate(['/library']);
           return;
       }
@@ -79,6 +88,20 @@ export class RegisterPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: AvatarsPage,
+      cssClass: 'avatar-modal-css'
+    });
+    
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if(data){
+      this.avatar = data;
+    }
   }
 
 

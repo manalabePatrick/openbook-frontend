@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -13,7 +13,10 @@
       *ngFor="let message of messages"
       (click)="presentAlertConfirm(message.content, message.from)"
     >
-      <ion-label>From:{{message.from}} <ion-note>5/2/2020</ion-note></ion-label>
+      <ion-label
+        >From:{{message.from}}
+        <ion-note class="ion-float-right">5/2/2020</ion-note></ion-label
+      >
     </ion-item>
   </ion-list>
 </ion-content>

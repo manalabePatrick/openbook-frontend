@@ -33,3 +33,9 @@ ion-card {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
 }
+
+ion-badge {
+  border-radius: 1em;
+  --background: rgba(175, 184, 189, 0.678);
+  --color: rgba(47, 48, 51, 0.897);
+}

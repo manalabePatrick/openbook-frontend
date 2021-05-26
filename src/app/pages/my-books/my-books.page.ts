@@ -17,7 +17,8 @@ export class MyBooksPage implements OnInit {
   books = [{
     _id: '1',
     title: 'Default',
-    summary: 'Default'
+    summary: 'Default',
+    by:''
   }]
   constructor(private modalController: ModalController, private storage: LocalStorageService, private apiService: ApiService, private router: Router) { 
     this.userId = this.storage.userId;

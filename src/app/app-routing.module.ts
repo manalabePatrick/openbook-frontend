@@ -57,6 +57,14 @@ const routes: Routes = [
   {
     path: 'letters',
     loadChildren: () => import('./pages/letters/letters.module').then( m => m.LettersPageModule)
+  },
+  {
+    path: 'diary',
+    loadChildren: () => import('./pages/diary/diary.module').then( m => m.DiaryPageModule)
+  },
+  {
+    path: 'avatars',
+    loadChildren: () => import('./modals/avatars/avatars.module').then( m => m.AvatarsPageModule)
   }
 
 

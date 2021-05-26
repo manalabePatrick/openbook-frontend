@@ -11,10 +11,12 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class PostBookPage implements OnInit {
 
+  genre:any;
   public book = {
     title: '',
     summary: '',
-    by: ''
+    by: '',
+    genre:''
   }
   constructor(private router: Router, private modalController:ModalController, private alertController: AlertController, private apiService: ApiService, private storage: LocalStorageService){ 
     this.book.by = this.storage.userName;
@@ -29,6 +31,7 @@ export class PostBookPage implements OnInit {
       return err
     }
 
+    this.book.genre = this.genre;
     let requestObject = {
       location: "users/create-book",
       method: "POST",

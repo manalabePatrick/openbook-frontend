@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="" (click)="closeModal()"></ion-back-button>
     </ion-buttons>
@@ -14,7 +14,7 @@
     <ion-input [(ngModel)]="book.content"></ion-input>
   </ion-item>
 
-  <ion-button (click)="sendLetter()" expand="block" shape="round">
+  <ion-button (click)="sendLetter()" expand="block" shape="round" color="dark">
     Send Letter
   </ion-button>
 </ion-content>

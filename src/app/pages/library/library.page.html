@@ -1,13 +1,18 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar color="none">
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Library</ion-title>
   </ion-toolbar>
+  <ion-toolbar color="dark">
+    <ion-searchbar
+      (ionChange)="search($event)"
+      (ionClear)="clearSearch()"
+    ></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <ion-searchbar></ion-searchbar>
   <ion-card *ngFor="let book of organizedBook">
     <ion-grid>
       <ion-row>
@@ -35,14 +40,11 @@
               expand="block"
               shape="round"
               (click)="viewBook(book._id, book.title, book.by, book.owner_id)"
-              color="secondary"
+              color="dark"
             >
               Read
             </ion-button>
-            <ion-badge color="primary" color="none">
-              <ion-icon name="star-half-outline" color="warning"></ion-icon>
-              69</ion-badge
-            >
+            <ion-badge *ngFor="let genre of book.genre">{{genre}}</ion-badge>
           </ion-card-content>
         </ion-col>
       </ion-row>

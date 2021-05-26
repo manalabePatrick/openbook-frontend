@@ -1,0 +1,11 @@
+.my-book {
+  width: 80%;
+  height: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.my-book {
+  box-shadow: 0 0 0 0 rgb(0, 47, 255);
+  transform: scale(1);
+  animation: pulse 2s infinite;
+}

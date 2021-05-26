@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { element } from 'protractor';
 import { ApiService } from 'src/app/services/api.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
@@ -23,6 +24,19 @@ export class LibraryPage implements OnInit {
   }
 
   ngOnInit() {
+    this.showBooks();
+  }
+
+  public search(evnt){
+
+    const result = this.organizedBook.find( ({ title }) => title.toLowerCase() === evnt.detail.value.toLowerCase() );
+    if(result){
+      this.organizedBook = [];
+      this.organizedBook.push(result);
+    }
+  }
+
+  public clearSearch(){
     this.showBooks();
   }
 
@@ -89,17 +103,19 @@ export class LibraryPage implements OnInit {
     this.router.navigate(['/view-book']);
   }
 
+
   async presentAlert(title, summary, by) {
     const alert = await this.alertController.create({
       cssClass: 'ion-text-justify',
-      header: title,
+      header:"Title: " + title,
       subHeader: 'by: ' + by,
-      message: summary,
+      message: "summary: "+ summary,
       buttons: ['OK']
     });
 
     await alert.present();
 
+     
     // const { role } = await alert.onDidDismiss();
     // console.log('onDidDismiss resolved with role', role);
   }

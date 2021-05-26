@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="" (click)="closeModal()"></ion-back-button>
     </ion-buttons>
@@ -9,16 +9,21 @@
 
 <ion-content class="ion-padding">
   <ion-item>
-    <ion-label position="floating">Title</ion-label>
+    <ion-label position="floating">Title:</ion-label>
     <ion-input [(ngModel)]="chapter.title"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Content</ion-label>
+    <ion-label position="floating">Body:</ion-label>
     <ion-input [(ngModel)]="chapter.content"></ion-input>
   </ion-item>
 
-  <ion-button (click)="addChapter()" expand="block" shape="round">
+  <ion-button
+    (click)="addChapter()"
+    expand="block"
+    shape="round"
+    color="success"
+  >
     Add
   </ion-button>
 </ion-content>

@@ -1,11 +1,12 @@
 <ion-header>
-  <ion-toolbar color="none">
-    <ion-title class="ion-text-center">Login</ion-title>
+  <ion-toolbar>
+    <ion-title class="ion-text-center" color="success">Login </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-item>
+  <img src="../../../assets/logo.png" alt="" class="logo" />
+  <ion-item class="first-itm">
     <ion-label position="floating">Email</ion-label>
     <ion-input [(ngModel)]="credentials.email"></ion-input>
   </ion-item>
@@ -15,10 +16,11 @@
     <ion-input type="password" [(ngModel)]="credentials.password"></ion-input>
   </ion-item>
 
-  <ion-button expand="block" shape="round" (click)="login()">
+  <ion-button expand="block" shape="round" (click)="login()" class="login-btn">
     Login
   </ion-button>
   <ion-button
+    color="success"
     expand="block"
     shape="round"
     [routerLink]="['/register']"

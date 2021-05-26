@@ -1,0 +1,25 @@
+ion-toolbar {
+  --background: #222629;
+}
+
+ion-button {
+  height: 3em;
+  margin-top: 2%;
+}
+
+.login-btn {
+  --background: #222629;
+  --color: #10dc60;
+}
+
+.first-itm {
+  margin-top: 60%;
+}
+
+.logo {
+  width: 55%;
+  position: absolute;
+  left: 20%;
+  top: 8%;
+  z-index: -1;
+}

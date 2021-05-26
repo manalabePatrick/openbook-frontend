@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="" (click)="closeModal()"></ion-back-button>
     </ion-buttons>
@@ -18,7 +18,27 @@
     <ion-input [(ngModel)]="book.summary"></ion-input>
   </ion-item>
 
-  <ion-button (click)="addBook()" expand="block" shape="round">
+  <ion-item>
+    <ion-label>Genre</ion-label>
+    <ion-select
+      multiple="true"
+      [value]="['Comedy', 'Fantasy', 'Romance', 'Slice Of Life', 'Sci-Fi', 'Drama', 'Short Story', 'Action', 'Horror']"
+      [(ngModel)]="genre"
+    >
+      <ion-select-option isChecked="false" value="Comedy"
+        >Comedy</ion-select-option
+      >
+      <ion-select-option value="Fantasy">Fantasy</ion-select-option>
+      <ion-select-option value="Romance">Romance</ion-select-option>
+      <ion-select-option value="Slice Of Life">Slice Of Life</ion-select-option>
+      <ion-select-option value="Sci-Fi">Sci-Fi</ion-select-option>
+      <ion-select-option value="Drama">Drama</ion-select-option>
+      <ion-select-option value="Short Story">Short Story</ion-select-option>
+      <ion-select-option value="Action">Action</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button (click)="addBook()" expand="block" shape="round" color="success">
     Add
   </ion-button>
 </ion-content>

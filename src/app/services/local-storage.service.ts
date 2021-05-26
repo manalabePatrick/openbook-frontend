@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
 
   constructor() { }
-
+  user:any;
   by = '';
   bookTitle = '';
   userName = '';

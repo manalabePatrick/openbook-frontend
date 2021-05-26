@@ -1,22 +1,27 @@
 <ion-header>
-  <ion-toolbar color="none">
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>My Books</ion-title>
   </ion-toolbar>
+  <ion-toolbar color="dark">
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-searchbar></ion-searchbar>
-
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="presentModal()">
+    <ion-fab-button (click)="presentModal()" color="success">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-card *ngFor="let book of books" (click)="viewBook(book._id, book.title)">
+  <ion-card
+    *ngFor="let book of books"
+    (click)="viewBook(book._id, book.title, book.by)"
+    class="my-book"
+  >
     <img
       src="https://images.pexels.com/photos/1482476/pexels-photo-1482476.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     />
@@ -26,9 +31,5 @@
       <ion-card-subtitle>Summary</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content> {{book.summary}} </ion-card-content>
-    <ion-badge color="primary" color="none">
-      <ion-icon name="star-half-outline" color="warning"></ion-icon>
-      69</ion-badge
-    >
   </ion-card>
 </ion-content>

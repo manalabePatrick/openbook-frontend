@@ -1,0 +1,27 @@
+ion-toolbar {
+  --background: #222629;
+}
+
+ion-button {
+  height: 3em;
+  margin-top: 2%;
+}
+
+ion-avatar {
+  margin-left: 10%;
+  width: 6.5em;
+  height: 6.5em;
+}
+
+.logo {
+  width: 55%;
+  position: absolute;
+  left: 20%;
+  top: 8%;
+  z-index: -1;
+}
+
+.register-btn {
+  --background: #222629;
+  --color: #10dc60;
+}
